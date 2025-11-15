@@ -53,14 +53,14 @@ export const InfiniteSliderBlock: React.FC<Props> = async ({
   return (
     <section className="bg-background pb-16 md:pb-32">
       <div className="group relative m-auto max-w-6xl px-6">
-        <div className="flex flex-col items-center md:flex-row">
+        <div className="flex flex-col items-center md:flex-row overflow-x-hidden">
           {title && (
             <div className="md:max-w-44 md:border-r md:pr-6">
               <p className="text-end text-lg">{title}</p>
             </div>
           )}
           <div className="relative py-6 md:w-[calc(100%-11rem)]">
-            <InfiniteSlider speedOnHover={speedOnHover ?? 20} speed={speed ?? 40} gap={gap ?? 115}>
+            <InfiniteSlider speedOnHover={speedOnHover ?? 20} speed={speed ?? 40} gap={gap ?? 112}>
               {resolvedSlides.map((slide) => (
                 <div key={slide.id} className="flex">
                   {slide.logo && (
