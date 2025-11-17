@@ -22,6 +22,7 @@ import {
 } from '@payloadcms/plugin-seo/fields'
 import { InfiniteSliderBlock } from '@/blocks/InfiniteSliderBlock/config'
 import { StatsBlock } from '@/blocks/StatsBlock/config'
+import { IntegrationsBlock } from '@/blocks/IntegrationsBlock/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -82,6 +83,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 FormBlock,
                 InfiniteSliderBlock,
                 StatsBlock,
+                IntegrationsBlock,
               ],
               required: true,
               admin: {

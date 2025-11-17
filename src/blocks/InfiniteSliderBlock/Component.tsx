@@ -51,7 +51,7 @@ export const InfiniteSliderBlock: React.FC<Props> = async ({
   if (resolvedSlides.length === 0) return null
 
   return (
-    <section className="bg-background pb-16 md:pb-32">
+    <section className="bg-background">
       <div className="group relative m-auto max-w-6xl px-6">
         <div className="flex flex-col items-center md:flex-row overflow-x-hidden">
           {title && (
