@@ -5,7 +5,6 @@ import { authenticatedOrPublished } from '@/access/authenticatedOrPublished'
 import { populatePublishedAt } from '@/hooks/populatePublishedAt'
 
 // ⚠️ Хуки переиспользуем/адаптируем
-import { revalidateProject, revalidateProjectDelete } from './hooks/revalidateProject'
 
 // SEO поля
 import {
@@ -17,24 +16,29 @@ import {
 } from '@payloadcms/plugin-seo/fields'
 import { Content } from '@/blocks/Content/config'
 import { slugField } from '@/fields/slug'
+import { revalidatePortfolio, revalidatePortfolioDelete } from './hooks/revalidatePortfolio'
 
-export const Projects: CollectionConfig<'projects'> = {
-  slug: 'projects',
+export const Portfolio: CollectionConfig<'portfolio'> = {
+  slug: 'portfolio',
   access: {
     create: authenticated,
     delete: authenticated,
     read: authenticatedOrPublished,
     update: authenticated,
   },
+  defaultPopulate: {
+    title: true,
+    slug: true,
+  },
   admin: {
     defaultColumns: ['title', 'slug', 'updatedAt'],
     livePreview: {
       url: ({ data, req }) => {
-        return `/projects/${data?.slug}`
+        return `/portfolio/${data?.slug}`
       },
     },
     preview: (data) => {
-      return `/projects/${data?.slug}`
+      return `/portfolio/${data?.slug}`
     },
     useAsTitle: 'title',
   },
@@ -44,6 +48,14 @@ export const Projects: CollectionConfig<'projects'> = {
       type: 'text',
       required: true,
       label: 'Название проекта',
+    },
+    {
+      name: 'excerpt',
+      type: 'textarea',
+      label: 'Краткое описание (для карточек, слайдеров)',
+      admin: {
+        description: 'Используется в блоках типа «Интеграции», «Архив проектов» и др.',
+      },
     },
     {
       name: 'logo',
@@ -100,9 +112,9 @@ export const Projects: CollectionConfig<'projects'> = {
     ...slugField(),
   ],
   hooks: {
-    afterChange: [revalidateProject],
+    afterChange: [revalidatePortfolio],
     beforeChange: [populatePublishedAt],
-    afterDelete: [revalidateProjectDelete],
+    afterDelete: [revalidatePortfolioDelete],
   },
   versions: {
     drafts: {

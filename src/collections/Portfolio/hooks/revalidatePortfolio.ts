@@ -1,12 +1,12 @@
 import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload'
 import { revalidatePath, revalidateTag } from 'next/cache'
-import type { Project } from '@/payload-types'
+import type { Portfolio } from '@/payload-types'
 
-const getProjectPath = (slug?: string | null): string => {
-  return slug ? `/projects/${slug}` : ''
+const getPortfolioPath = (slug?: string | null): string => {
+  return slug ? `/portfolio/${slug}` : ''
 }
 
-export const revalidateProject: CollectionAfterChangeHook<Project> = ({
+export const revalidatePortfolio: CollectionAfterChangeHook<Portfolio> = ({
   doc,
   previousDoc, // может быть undefined при создании
   req: { payload, context },
@@ -14,22 +14,22 @@ export const revalidateProject: CollectionAfterChangeHook<Project> = ({
   if (context?.disableRevalidate) return doc
 
   // Путь текущего документа
-  const currentPath = getProjectPath(doc.slug)
+  const currentPath = getPortfolioPath(doc.slug)
 
   // 1. Если документ опубликован — инвалидируем его путь
   if (doc._status === 'published' && currentPath) {
-    payload.logger.info(`Revalidating project at path: ${currentPath}`)
+    payload.logger.info(`Revalidating portfolio at path: ${currentPath}`)
     revalidatePath(currentPath)
-    revalidateTag('projects-sitemap')
+    revalidateTag('portfolio-sitemap')
   }
 
   // 2. Если ДО ЭТОГО документ был опубликован, а теперь — нет (например, черновик или удалён из публикации)
   if (previousDoc && previousDoc._status === 'published' && doc._status !== 'published') {
-    const oldPath = getProjectPath(previousDoc.slug)
+    const oldPath = getPortfolioPath(previousDoc.slug)
     if (oldPath) {
-      payload.logger.info(`Revalidating old (now unpublished) project at path: ${oldPath}`)
+      payload.logger.info(`Revalidating old (now unpublished) portfolio at path: ${oldPath}`)
       revalidatePath(oldPath)
-      revalidateTag('projects-sitemap')
+      revalidateTag('portfolio-sitemap')
     }
   }
 
@@ -37,16 +37,16 @@ export const revalidateProject: CollectionAfterChangeHook<Project> = ({
 }
 
 // Для удаления — отдельный хук (afterDelete)
-export const revalidateProjectDelete: CollectionAfterDeleteHook<Project> = ({
+export const revalidatePortfolioDelete: CollectionAfterDeleteHook<Portfolio> = ({
   doc,
   req: { context },
 }) => {
   if (context?.disableRevalidate) return doc
 
-  const path = getProjectPath(doc?.slug)
+  const path = getPortfolioPath(doc?.slug)
   if (path) {
     revalidatePath(path)
-    revalidateTag('projects-sitemap')
+    revalidateTag('portfolio-sitemap')
   }
 
   return doc

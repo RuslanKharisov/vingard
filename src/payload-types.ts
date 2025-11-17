@@ -74,7 +74,7 @@ export interface Config {
     users: User;
     brands: Brand;
     clients: Client;
-    projects: Project;
+    portfolio: Portfolio;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -99,7 +99,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     brands: BrandsSelect<false> | BrandsSelect<true>;
     clients: ClientsSelect<false> | ClientsSelect<true>;
-    projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    portfolio: PortfolioSelect<false> | PortfolioSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -213,6 +213,7 @@ export interface Page {
     | FormBlock
     | InfiniteSliderBlock
     | StatsBlock
+    | IntegrationsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -834,6 +835,27 @@ export interface StatsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IntegrationsBlock".
+ */
+export interface IntegrationsBlock {
+  title: string;
+  description?: string | null;
+  mode?: ('manual' | 'fromCollection') | null;
+  manualItems?:
+    | {
+        title: string;
+        description: string;
+        logo: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  collection?: 'portfolio' | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'integrations';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "brands".
  */
 export interface Brand {
@@ -858,11 +880,15 @@ export interface Client {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "projects".
+ * via the `definition` "portfolio".
  */
-export interface Project {
+export interface Portfolio {
   id: number;
   title: string;
+  /**
+   * Используется в блоках типа «Интеграции», «Архив проектов» и др.
+   */
+  excerpt?: string | null;
   logo: number | Media;
   layout: ContentBlock[];
   meta?: {
@@ -1099,8 +1125,8 @@ export interface PayloadLockedDocument {
         value: number | Client;
       } | null)
     | ({
-        relationTo: 'projects';
-        value: number | Project;
+        relationTo: 'portfolio';
+        value: number | Portfolio;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1202,6 +1228,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         infiniteSlider?: T | InfiniteSliderBlockSelect<T>;
         stats?: T | StatsBlockSelect<T>;
+        integrations?: T | IntegrationsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1336,6 +1363,26 @@ export interface StatsBlockSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IntegrationsBlock_select".
+ */
+export interface IntegrationsBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  mode?: T;
+  manualItems?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        logo?: T;
+        id?: T;
+      };
+  collection?: T;
   id?: T;
   blockName?: T;
 }
@@ -1531,10 +1578,11 @@ export interface ClientsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "projects_select".
+ * via the `definition` "portfolio_select".
  */
-export interface ProjectsSelect<T extends boolean = true> {
+export interface PortfolioSelect<T extends boolean = true> {
   title?: T;
+  excerpt?: T;
   logo?: T;
   layout?:
     | T
@@ -1952,8 +2000,8 @@ export interface TaskSchedulePublish {
           value: number | Post;
         } | null)
       | ({
-          relationTo: 'projects';
-          value: number | Project;
+          relationTo: 'portfolio';
+          value: number | Portfolio;
         } | null);
     global?: string | null;
     user?: (number | null) | User;
