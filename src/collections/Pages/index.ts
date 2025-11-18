@@ -21,6 +21,8 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { InfiniteSliderBlock } from '@/blocks/InfiniteSliderBlock/config'
+import { StatsBlock } from '@/blocks/StatsBlock/config'
+import { IntegrationsBlock } from '@/blocks/IntegrationsBlock/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -73,7 +75,16 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, InfiniteSliderBlock],
+              blocks: [
+                CallToAction,
+                Content,
+                MediaBlock,
+                Archive,
+                FormBlock,
+                InfiniteSliderBlock,
+                StatsBlock,
+                IntegrationsBlock,
+              ],
               required: true,
               admin: {
                 initCollapsed: true,
@@ -132,6 +143,6 @@ export const Pages: CollectionConfig<'pages'> = {
       },
       schedulePublish: true,
     },
-    maxPerDoc: 50,
+    maxPerDoc: 5,
   },
 }

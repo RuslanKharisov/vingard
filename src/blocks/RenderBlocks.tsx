@@ -8,6 +8,8 @@ import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { InfiniteSliderBlock } from './InfiniteSliderBlock/Component'
+import { StatsBlock } from './StatsBlock/Components'
+import { IntegrationsBlock } from './IntegrationsBlock/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -16,6 +18,8 @@ const blockComponents = {
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   infiniteSlider: InfiniteSliderBlock,
+  stats: StatsBlock,
+  integrations: IntegrationsBlock,
 }
 
 export const RenderBlocks: React.FC<{
@@ -36,7 +40,7 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div className="my-16" key={index}>
+                <div className="py-8 md:py-12 lg:py-16" key={index}>
                   {/* @ts-expect-error there may be some mismatch between the expected types here */}
                   <Block {...block} disableInnerContainer />
                 </div>
