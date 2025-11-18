@@ -2,9 +2,6 @@ import React from 'react'
 import type { IntegrationsBlock as Props } from '@/payload-types'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { Media } from '@/components/Media'
 import { GridPattern } from '@/components/ui/grid-pattern'
@@ -66,7 +63,7 @@ export const IntegrationsBlock: React.FC<Props> = async ({
 
   return (
     <section>
-      <div className="mx-auto space-y-16 max-w-5xl px-6">
+      <div className="container space-y-16 px-6">
         <div className="text-center">
           {title && <h2 className="text-balance text-3xl font-semibold md:text-4xl">{title}</h2>}
           {description && <p className="text-muted-foreground mt-6">{description}</p>}
@@ -100,6 +97,7 @@ const IntegrationCard = ({
   link: string
   logo: any
 }) => {
+  console.log('logo ==> ', logo)
   return (
     <Link
       href={link}
