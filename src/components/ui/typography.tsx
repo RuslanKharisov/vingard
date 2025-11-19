@@ -1,6 +1,6 @@
 import { cn } from '@/utilities/ui'
 
-export type TypographyTag = 'h1' | 'h2' | 'h3' | 'h4' | 'span' | 'div' | 'p' | 'li'
+export type TypographyTag = 'h1' | 'h2' | 'h3' | 'h4' | 'span' | 'div' | 'p'
 
 interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   tag?: TypographyTag
