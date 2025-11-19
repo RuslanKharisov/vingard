@@ -1,5 +1,5 @@
 import { authenticated } from '@/access/authenticated'
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, TextFieldSingleValidation } from 'payload'
 
 export const Socials: CollectionConfig = {
   slug: 'socials',
@@ -38,6 +38,12 @@ export const Socials: CollectionConfig = {
       admin: {
         description: 'Шаблон URL: https://github.com/{username}',
       },
+      validate: ((val: string) => {
+        if (!val.includes('{username}')) {
+          return 'Шаблон URL должен содержать заполнитель {имя пользователя}'
+        }
+        return true
+      }) as TextFieldSingleValidation,
     },
   ],
 }
