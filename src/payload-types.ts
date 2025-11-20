@@ -867,7 +867,7 @@ export interface IntegrationsBlock {
  * via the `definition` "ContactBlock".
  */
 export interface ContactBlock {
-  title: string;
+  title?: string | null;
   description?: string | null;
   id?: string | null;
   blockName?: string | null;
