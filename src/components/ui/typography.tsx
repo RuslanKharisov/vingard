@@ -21,9 +21,8 @@ export const Typography = ({
         'max-w-none mx-auto prose md:prose-md dark:prose-invert',
         className,
       )}
-      {...props}
     >
-      <Tag>{children}</Tag>
+      <Tag {...props}>{children}</Tag>
     </div>
   )
 }
