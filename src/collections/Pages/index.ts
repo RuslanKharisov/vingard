@@ -24,6 +24,7 @@ import { InfiniteSliderBlock } from '@/blocks/InfiniteSliderBlock/config'
 import { StatsBlock } from '@/blocks/StatsBlock/config'
 import { IntegrationsBlock } from '@/blocks/IntegrationsBlock/config'
 import { ContactBlock } from '@/blocks/ContactBlock/config'
+import { StaticContentBlock } from '@/blocks/StaticContentBlock/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -86,6 +87,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 StatsBlock,
                 IntegrationsBlock,
                 ContactBlock,
+                StaticContentBlock,
               ],
               required: true,
               admin: {

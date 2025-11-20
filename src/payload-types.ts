@@ -221,6 +221,7 @@ export interface Page {
     | StatsBlock
     | IntegrationsBlock
     | ContactBlock
+    | StaticContentBlock
   )[];
   meta?: {
     title?: string | null;
@@ -874,6 +875,47 @@ export interface ContactBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StaticContentBlock".
+ */
+export interface StaticContentBlock {
+  type: 'withImageLeft' | 'withImageRight' | 'withFeatures' | 'withTestimonial';
+  title: string;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  media: number | Media;
+  mediaDark?: (number | null) | Media;
+  features?:
+    | {
+        icon: 'zap' | 'cpu';
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  testimonial?: {
+    quote: string;
+    author: string;
+    companyLogo?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'staticContent';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "brands".
  */
 export interface Brand {
@@ -1342,6 +1384,7 @@ export interface PagesSelect<T extends boolean = true> {
         stats?: T | StatsBlockSelect<T>;
         integrations?: T | IntegrationsBlockSelect<T>;
         contact?: T | ContactBlockSelect<T>;
+        staticContent?: T | StaticContentBlockSelect<T>;
       };
   meta?:
     | T
@@ -1506,6 +1549,34 @@ export interface IntegrationsBlockSelect<T extends boolean = true> {
 export interface ContactBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StaticContentBlock_select".
+ */
+export interface StaticContentBlockSelect<T extends boolean = true> {
+  type?: T;
+  title?: T;
+  content?: T;
+  media?: T;
+  mediaDark?: T;
+  features?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  testimonial?:
+    | T
+    | {
+        quote?: T;
+        author?: T;
+        companyLogo?: T;
+      };
   id?: T;
   blockName?: T;
 }
