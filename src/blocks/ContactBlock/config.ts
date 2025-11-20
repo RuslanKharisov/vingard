@@ -12,7 +12,6 @@ export const ContactBlock: Block = {
       name: 'title',
       type: 'text',
       defaultValue: 'Contact Us',
-      required: true,
     },
     {
       name: 'description',
