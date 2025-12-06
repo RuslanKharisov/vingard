@@ -16,13 +16,14 @@ import { Content } from '@/blocks/Content/config'
 import { slugField } from '@/fields/slug'
 import { revalidatePortfolio, revalidatePortfolioDelete } from './hooks/revalidatePortfolio'
 import { StaticContentBlock } from '@/blocks/StaticContentBlock/config'
+import { anyone } from '@/access/anyone'
 
 export const Portfolio: CollectionConfig<'portfolio'> = {
   slug: 'portfolio',
   access: {
     create: authenticated,
     delete: authenticated,
-    read: authenticatedOrPublished,
+    read: anyone,
     update: authenticated,
   },
   defaultPopulate: {

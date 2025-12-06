@@ -24,6 +24,8 @@ import { Clients } from './collections/Clients'
 import { Portfolio } from './collections/Portfolio'
 import { Icons } from './collections/Icons'
 import { Socials } from './collections/Socials'
+import { Jobs } from './collections/Jobs'
+import { Skills } from './collections/Skills'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -72,7 +74,20 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || '',
     },
   }),
-  collections: [Pages, Posts, Media, Categories, Users, Brands, Clients, Portfolio, Icons, Socials],
+  collections: [
+    Pages,
+    Posts,
+    Media,
+    Categories,
+    Users,
+    Brands,
+    Clients,
+    Portfolio,
+    Icons,
+    Socials,
+    Jobs,
+    Skills,
+  ],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer, Contacts],
   plugins: [
