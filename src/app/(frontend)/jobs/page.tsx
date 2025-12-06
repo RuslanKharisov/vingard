@@ -10,6 +10,7 @@ import PageClient from './page.client'
 import { CollectionGrid } from '@/components/CollectionGrid'
 import { PorfolioCard } from '@/components/FeatureСard.tsx'
 import { VacancyCard } from '@/components/VacancyCard'
+import { Typography } from '@/components/ui/typography'
 
 export const dynamic = 'force-static'
 export const revalidate = 600
@@ -20,7 +21,7 @@ export default async function JobsPage() {
   const jobs = await payload.find({
     collection: 'jobs',
     depth: 1,
-    limit: 12,
+    limit: 6,
     where: { _status: { equals: 'published' } },
     select: {
       title: true,
@@ -31,25 +32,23 @@ export default async function JobsPage() {
       salaryType: true,
     },
   })
-  console.log('jobs ==> ', jobs)
 
   return (
     <div className="pt-24 pb-24">
       <PageClient />
       <div className="container mb-16">
-        <div className="prose dark:prose-invert max-w-none">
-          <h1>Вакансии</h1>
+        <div className="max-w-none">
+          <Typography tag="h1">Вакансии</Typography>
         </div>
       </div>
-      {/* <div className="container mb-8">
+      <div className="container mb-8">
         <PageRange
-          collection="jobs"
+          collection="posts"
           currentPage={jobs.page}
           limit={12}
           totalDocs={jobs.totalDocs}
         />
       </div>
-      */}
       <div className="container">
         <CollectionGrid>
           {jobs.docs.map((job) => (

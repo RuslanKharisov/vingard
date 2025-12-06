@@ -159,6 +159,7 @@ export default async function JobPage({ params: paramsPromise }: Args) {
             <Typography tag="h3" className="text-lg font-semibold mb-3">
               Ключевые навыки:
             </Typography>
+
             <SkillsCloud skills={job.keySkills || []} />
           </div>
 
@@ -170,18 +171,28 @@ export default async function JobPage({ params: paramsPromise }: Args) {
               </Typography>
               <div className="space-y-4">
                 {relatedJobs.map((j) => (
-                  <a
-                    key={j.id}
-                    href={`/jobs/${j.slug}`}
-                    className="block hover:underline transition-colors"
-                  >
-                    <Typography tag="div" className="font-medium">
-                      {j.title}
-                    </Typography>
-                    <Typography tag="div" className="text-sm text-muted-foreground">
-                      {j.location}
-                    </Typography>
-                  </a>
+                  <div key={j.id} className="relative">
+                    <div className="-mt-2 -ml-20 pointer-events-none absolute top-0 left-1/2 size-full mask-[radial-gradient(farthest-side_at_top,white,transparent)]">
+                      <GridPattern
+                        className="absolute inset-0 size-full stroke-foreground/20"
+                        height={20}
+                        width={20}
+                        x={1}
+                      />
+                    </div>
+
+                    <a
+                      href={`/jobs/${j.slug}`}
+                      className="block px-5 py-3 rounded-lg transition-box-shadow hover:shadow-muted-foreground/40 duration-300 hover:shadow-lg cursor-pointer"
+                    >
+                      <Typography tag="div" className="font-medium">
+                        {j.title}
+                      </Typography>
+                      <Typography tag="div" className="text-sm text-muted-foreground">
+                        {j.location}
+                      </Typography>
+                    </a>
+                  </div>
                 ))}
               </div>
             </div>

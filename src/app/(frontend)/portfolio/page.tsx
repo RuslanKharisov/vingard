@@ -32,6 +32,11 @@ export default async function PortfolioList() {
   return (
     <div className="pt-24 pb-24">
       <PageClient />
+      <div className="container mb-16">
+        <div className="max-w-none">
+          <Typography tag="h1">Портфолио</Typography>
+        </div>
+      </div>
       <div className="container mb-8">
         <PageRange
           collection="posts"
@@ -39,11 +44,6 @@ export default async function PortfolioList() {
           limit={12}
           totalDocs={portfolios.totalDocs}
         />
-      </div>
-      <div className="container mb-16">
-        <div className="max-w-none">
-          <Typography tag="h1">Портфолио</Typography>
-        </div>
       </div>
 
       <div className="container">

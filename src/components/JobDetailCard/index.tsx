@@ -25,7 +25,7 @@ export function JobDetailCard({
   paymentFrequency,
 }: JobDetailCardProps) {
   return (
-    <div className="relative overflow-hidden p-8 border rounded-xl bg-card">
+    <div className="relative overflow-hidden p-8  rounded-lg bg-card shadow-lg">
       <div className="-mt-2 -ml-20 pointer-events-none absolute top-0 left-1/2 size-full mask-[radial-gradient(farthest-side_at_top,white,transparent)]">
         <GridPattern
           className="absolute inset-0 size-full stroke-foreground/10"
