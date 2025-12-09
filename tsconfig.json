@@ -33,7 +33,7 @@
       ],
       "@/*": [
         "./src/*"
-      ],
+      ]
     }
   },
   "include": [
@@ -43,9 +43,11 @@
     "redirects.js",
     "next-env.d.ts",
     "next.config.js",
-    "next-sitemap.config.cjs"
-, "src/blocks/StatsBlock/Components.txs"  ],
+    "next-sitemap.config.cjs",
+    "src/blocks/StatsBlock/Components.txs",
+    ".next/dev/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
-  ],
+  ]
 }
