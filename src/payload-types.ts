@@ -77,6 +77,8 @@ export interface Config {
     portfolio: Portfolio;
     icons: Icon;
     socials: Social;
+    jobs: Job;
+    skills: Skill;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -104,6 +106,8 @@ export interface Config {
     portfolio: PortfolioSelect<false> | PortfolioSelect<true>;
     icons: IconsSelect<false> | IconsSelect<true>;
     socials: SocialsSelect<false> | SocialsSelect<true>;
+    jobs: JobsSelect<false> | JobsSelect<true>;
+    skills: SkillsSelect<false> | SkillsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -118,6 +122,7 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
+  fallbackLocale: null;
   globals: {
     header: Header;
     footer: Footer;
@@ -867,7 +872,7 @@ export interface IntegrationsBlock {
  * via the `definition` "ContactBlock".
  */
 export interface ContactBlock {
-  title: string;
+  title?: string | null;
   description?: string | null;
   id?: string | null;
   blockName?: string | null;
@@ -993,7 +998,7 @@ export interface Portfolio {
       | null;
     media?: (number | null) | Media;
   };
-  layout: ContentBlock[];
+  layout: (ContentBlock | StaticContentBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -1049,6 +1054,79 @@ export interface Social {
    * Шаблон URL: https://github.com/{username}
    */
   urlPattern: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "jobs".
+ */
+export interface Job {
+  id: number;
+  title: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  responsibilities: {
+    item: string;
+    id?: string | null;
+  }[];
+  requirements: {
+    item: string;
+    id?: string | null;
+  }[];
+  conditions: {
+    item: string;
+    id?: string | null;
+  }[];
+  keySkills?:
+    | {
+        skill: number | Skill;
+        id?: string | null;
+      }[]
+    | null;
+  salaryFrom?: number | null;
+  salaryTo?: number | null;
+  salaryType?: ('net' | 'gross') | null;
+  paymentFrequency?: ('twice_per_month' | 'weekly' | 'daily' | 'completion') | null;
+  experience?: ('no_experience' | 'less_than_1' | '1_to_3' | '3_to_6' | 'more_than_6') | null;
+  employmentType?: ('full' | 'part' | 'project' | 'fly_in_fly_out' | 'side_job') | null;
+  schedule?: ('full_day' | 'shift' | 'flexible' | 'remote' | 'fly_in_fly_out') | null;
+  workHours?: number | null;
+  workFormat?: ('office' | 'remote' | 'field' | 'hybrid') | null;
+  location: string;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  publishedAt?: string | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  relatedJobs?: (number | Job)[] | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "skills".
+ */
+export interface Skill {
+  id: number;
+  name: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -1281,6 +1359,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'socials';
         value: number | Social;
+      } | null)
+    | ({
+        relationTo: 'jobs';
+        value: number | Job;
+      } | null)
+    | ({
+        relationTo: 'skills';
+        value: number | Skill;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1804,6 +1890,7 @@ export interface PortfolioSelect<T extends boolean = true> {
     | T
     | {
         content?: T | ContentBlockSelect<T>;
+        staticContent?: T | StaticContentBlockSelect<T>;
       };
   meta?:
     | T
@@ -1848,6 +1935,71 @@ export interface SocialsSelect<T extends boolean = true> {
   key?: T;
   icon?: T;
   urlPattern?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "jobs_select".
+ */
+export interface JobsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  responsibilities?:
+    | T
+    | {
+        item?: T;
+        id?: T;
+      };
+  requirements?:
+    | T
+    | {
+        item?: T;
+        id?: T;
+      };
+  conditions?:
+    | T
+    | {
+        item?: T;
+        id?: T;
+      };
+  keySkills?:
+    | T
+    | {
+        skill?: T;
+        id?: T;
+      };
+  salaryFrom?: T;
+  salaryTo?: T;
+  salaryType?: T;
+  paymentFrequency?: T;
+  experience?: T;
+  employmentType?: T;
+  schedule?: T;
+  workHours?: T;
+  workFormat?: T;
+  location?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  publishedAt?: T;
+  slug?: T;
+  slugLock?: T;
+  relatedJobs?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "skills_select".
+ */
+export interface SkillsSelect<T extends boolean = true> {
+  name?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2282,6 +2434,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'portfolio';
           value: number | Portfolio;
+        } | null)
+      | ({
+          relationTo: 'jobs';
+          value: number | Job;
         } | null);
     global?: string | null;
     user?: (number | null) | User;
