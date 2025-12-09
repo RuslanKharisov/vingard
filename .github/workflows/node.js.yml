@@ -61,6 +61,9 @@ jobs:
           [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
           # nvm use 22.14.0
 
+          echo "📂 Текущая рабочая директория:"
+          pwd
+
           cd ~/nextjs-app
 
           echo "📦 Копируем .env"
