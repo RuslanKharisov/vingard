@@ -56,8 +56,6 @@ export default async function JobPage({ params: paramsPromise }: Args) {
 
   if (!job) return <PayloadRedirects url={url} />
 
-  console.log('job ==> ', job)
-
   const jobLabels = {
     experience: experienceLabels[job.experience || ''] || job.experience,
     employmentType: employmentTypeLabels[job.employmentType || ''] || job.employmentType,
@@ -219,6 +217,6 @@ const queryJobBySlug = cache(async ({ slug }: { slug: string }) => {
     depth: 1,
     where: { slug: { equals: slug } },
   })
-  console.log('result ==> ', result)
+
   return result.docs?.[0] || null
 })

@@ -8,20 +8,29 @@ import { getPayload } from 'payload'
 import React from 'react'
 import PageClient from './page.client'
 import { CollectionGrid } from '@/components/CollectionGrid'
-import { PorfolioCard } from '@/components/FeatureСard.tsx'
 import { VacancyCard } from '@/components/VacancyCard'
 import { Typography } from '@/components/ui/typography'
 
 export const dynamic = 'force-static'
 export const revalidate = 600
 
-export default async function JobsPage() {
+type Args = {
+  params: Promise<{
+    pageNumber: string
+  }>
+}
+
+export default async function JobsPage({ params: paramsPromise }: Args) {
+  const { pageNumber } = await paramsPromise
   const payload = await getPayload({ config: configPromise })
+
+  const sanitizedPageNumber = Number(pageNumber)
 
   const jobs = await payload.find({
     collection: 'jobs',
     depth: 1,
     limit: 6,
+    page: sanitizedPageNumber,
     where: { _status: { equals: 'published' } },
     select: {
       title: true,
