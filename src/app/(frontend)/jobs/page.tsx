@@ -1,6 +1,4 @@
-// src/app/(frontend)/jobs/page.tsx
 import type { Metadata } from 'next/types'
-import { CollectionArchive } from '@/components/CollectionArchive'
 import { PageRange } from '@/components/PageRange'
 import { Pagination } from '@/components/Pagination'
 import configPromise from '@payload-config'
@@ -8,7 +6,6 @@ import { getPayload } from 'payload'
 import React from 'react'
 import PageClient from './page.client'
 import { CollectionGrid } from '@/components/CollectionGrid'
-import { PorfolioCard } from '@/components/FeatureСard.tsx'
 import { VacancyCard } from '@/components/VacancyCard'
 import { Typography } from '@/components/ui/typography'
 

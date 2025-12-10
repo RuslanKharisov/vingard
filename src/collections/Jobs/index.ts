@@ -19,6 +19,7 @@ import { anyone } from '@/access/anyone'
 import { authenticated } from '@/access/authenticated'
 import { slugField } from '@/fields/slug'
 import { Banner } from '@/blocks/Banner/config'
+import { revalidateJob } from './hooks/revalidateJobs'
 
 export const Jobs: CollectionConfig<'jobs'> = {
   slug: 'jobs',
@@ -253,6 +254,9 @@ export const Jobs: CollectionConfig<'jobs'> = {
       relationTo: 'jobs',
     },
   ],
+  hooks: {
+    afterChange: [revalidateJob],
+  },
   versions: {
     drafts: { autosave: { interval: 500 }, schedulePublish: true },
     maxPerDoc: 50,
