@@ -14,7 +14,7 @@
   }
 
   :root {
-    --background: 0 0% 100%;
+    --background: oklch(98.5% 0.002 247.839);
     --foreground: 222.2 84% 4.9%;
 
     --card: 240 5% 96%;
@@ -47,6 +47,8 @@
     --success: 196 52% 74%;
     --warning: 34 89% 85%;
     --error: 10 100% 86%;
+
+    --text: oklch(37.3% 0.034 259.733);
   }
 
   [data-theme='dark'] {
