@@ -115,6 +115,7 @@ const config = {
               '--tw-prose-headings': 'var(--text)',
               h1: {
                 fontWeight: '600',
+                fontSize: '2rem',
                 marginBottom: '0.25em',
               },
               h2: {
