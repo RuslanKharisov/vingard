@@ -29,7 +29,7 @@ export const StaticContentBlock: React.FC<Props> = ({
   return (
     <section className=" overflow-hidden">
       {/* <div className="mx-auto max-w-7xl space-y-8 px-6 md:space-y-16"> */}
-      <div className="mx-auto space-y-8 px-6 md:space-y-16">
+      <div className="container space-y-8 px-6 md:space-y-16">
         {title && (
           <Typography tag="h2" className="mx-0 text-balance max-w-4xl">
             {title}
