@@ -35,7 +35,9 @@ export function JobDetailCard({
         />
       </div>
 
-      <Typography tag="h1">{title}</Typography>
+      <Typography tag="h1" className="wrap-break-word">
+        {title}
+      </Typography>
       <Typography tag="p" className="my-3 font-semibold">
         {location} {salary && `• ${salary}`}
       </Typography>
