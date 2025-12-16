@@ -999,7 +999,7 @@ export interface Portfolio {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (ContentBlock | StaticContentBlock)[];
+  layout: (ContentBlock | StaticContentBlock | StatsBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -1893,6 +1893,7 @@ export interface PortfolioSelect<T extends boolean = true> {
     | {
         content?: T | ContentBlockSelect<T>;
         staticContent?: T | StaticContentBlockSelect<T>;
+        stats?: T | StatsBlockSelect<T>;
       };
   meta?:
     | T
