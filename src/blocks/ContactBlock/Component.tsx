@@ -112,7 +112,7 @@ function ContactItem({ title, description, icon: Icon, content, isLast }: Contac
     >
       {/* Header */}
       <div className=" border-b bg-secondary/50 p-4 dark:bg-secondary/20">
-        <div className="flex items-center justify-center gap-x-3 w-fit mx-auto">
+        <div className="flex items-center justify-center gap-x-3 w-fit md:mx-auto">
           <Icon className="size-5 text-muted-foreground" strokeWidth={1} />
           <Typography tag="h3" className="w-fit">
             {title}
@@ -121,13 +121,13 @@ function ContactItem({ title, description, icon: Icon, content, isLast }: Contac
       </div>
 
       {/* Content */}
-      <div className="p-4 flex flex-col min-h-24 justify-center items-center text-justify">
+      <div className="p-4 flex flex-col min-h-24 justify-center md:items-center md:text-justify">
         {content}
       </div>
 
       {/* Description */}
       <div className="border-t p-4">
-        <Typography tag="p" className="text-muted-foreground text-sm text-center">
+        <Typography tag="p" className="text-muted-foreground text-sm md:text-center">
           {description}
         </Typography>
       </div>
