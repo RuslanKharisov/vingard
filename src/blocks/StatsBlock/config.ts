@@ -9,6 +9,17 @@ export const StatsBlock: Block = {
   },
   fields: [
     {
+      name: 'type',
+      type: 'select',
+      label: 'style ',
+      defaultValue: 'default',
+      options: [
+        { label: 'Default', value: 'default' },
+        { label: 'Secondary', value: 'secondary' },
+      ],
+      required: true,
+    },
+    {
       name: 'title',
       type: 'text',
       label: 'Заголовок',

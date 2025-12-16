@@ -2,11 +2,60 @@ import React from 'react'
 import type { StatsBlock as StatsBlockProps } from '@/payload-types'
 import { Typography } from '@/components/ui/typography'
 
-export const StatsBlock: React.FC<StatsBlockProps> = ({ title, description, items }) => {
+export const StatsBlock: React.FC<StatsBlockProps> = ({
+  type = 'default',
+  title,
+  description,
+  items,
+}) => {
   if (!items || items.length === 0) return null
 
+  // Общий контейнер
+  const renderContent = () => {
+    if (type === 'secondary') {
+      return (
+        <div className="grid gap-0.5 *:text-center grid-cols-2 md:grid-cols-3">
+          {items.map((item, i) => (
+            <div key={i} className="bg-card rounded-var(--radius) space-y-4 py-12">
+              {item.value && (
+                <Typography tag="div" className="text-5xl font-bold">
+                  {item.value}
+                </Typography>
+              )}
+              {item.label && (
+                <Typography tag="p" className="text-sm">
+                  {item.label}
+                </Typography>
+              )}
+            </div>
+          ))}
+        </div>
+      )
+    }
+
+    // default и fallback
+    return (
+      <div className="grid gap-12 divide-y md:*:text-center md:grid-cols-3 md:gap-2 md:divide-x md:divide-y-0">
+        {items.map((item, i) => (
+          <div key={i} className="space-y-4 pb-3">
+            {item.value && (
+              <Typography tag="p" className="text-3xl md:text-5xl font-bold">
+                {item.value}
+              </Typography>
+            )}
+            {item.label && (
+              <Typography tag="p" className="text-sm">
+                {item.label}
+              </Typography>
+            )}
+          </div>
+        ))}
+      </div>
+    )
+  }
+
   return (
-    <section>
+    <section className={type === 'secondary' ? '' : ''}>
       <div className="container space-y-8 px-6 md:space-y-16">
         <div className="relative z-10 mx-auto max-w-xl space-y-6 md:text-center">
           {title && (
@@ -21,22 +70,7 @@ export const StatsBlock: React.FC<StatsBlockProps> = ({ title, description, item
           )}
         </div>
 
-        <div className="grid gap-12 divide-y md:*:text-center md:grid-cols-3 md:gap-2 md:divide-x md:divide-y-0">
-          {items.map((item, i) => (
-            <div key={i} className="space-y-4 pb-3">
-              {item.value && (
-                <Typography tag="p" className="text-3xl md:text-5xl font-bold">
-                  {item.value}
-                </Typography>
-              )}
-              {item.label && (
-                <Typography tag="p" className="text-sm">
-                  {item.label}
-                </Typography>
-              )}
-            </div>
-          ))}
-        </div>
+        {renderContent()}
       </div>
     </section>
   )

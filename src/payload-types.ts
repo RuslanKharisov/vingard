@@ -833,6 +833,7 @@ export interface InfiniteSliderBlock {
  * via the `definition` "StatsBlock".
  */
 export interface StatsBlock {
+  type: 'default' | 'secondary';
   title: string;
   description?: string | null;
   items?:
@@ -1596,6 +1597,7 @@ export interface InfiniteSliderBlockSelect<T extends boolean = true> {
  * via the `definition` "StatsBlock_select".
  */
 export interface StatsBlockSelect<T extends boolean = true> {
+  type?: T;
   title?: T;
   description?: T;
   items?:
