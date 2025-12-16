@@ -14,11 +14,14 @@ export const StatsBlock: React.FC<StatsBlockProps> = ({
   const renderContent = () => {
     if (type === 'secondary') {
       return (
-        <div className="grid gap-2 *:text-center grid-cols-2 md:grid-cols-3">
+        <div className="grid gap-2 *:text-center grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {items.map((item, i) => (
-            <div key={i} className=" shadow-sm bg-card rounded-var(--radius) space-y-4 py-12">
+            <div
+              key={i}
+              className=" shadow-sm bg-card rounded-var(--radius) space-y-4 py-10 md:py-12 px-2 md:px-8"
+            >
               {item.value && (
-                <Typography tag="div" className="text-3xl md:text-5xl font-bold">
+                <Typography tag="p" className="text-3xl md:text-5xl font-bold">
                   {item.value}
                 </Typography>
               )}
@@ -57,7 +60,7 @@ export const StatsBlock: React.FC<StatsBlockProps> = ({
   return (
     <section className={type === 'secondary' ? '' : ''}>
       <div className="container space-y-8 px-6 md:space-y-16">
-        <div className="relative z-10 mx-auto max-w-xl space-y-6 md:text-center">
+        <div className="relative z-10 space-y-6">
           {title && (
             <Typography tag="h2" className="text-4xl font-medium lg:text-5xl">
               {title}
