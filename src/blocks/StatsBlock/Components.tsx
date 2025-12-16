@@ -14,11 +14,11 @@ export const StatsBlock: React.FC<StatsBlockProps> = ({
   const renderContent = () => {
     if (type === 'secondary') {
       return (
-        <div className="grid gap-0.5 *:text-center grid-cols-2 md:grid-cols-3">
+        <div className="grid gap-2 *:text-center grid-cols-2 md:grid-cols-3">
           {items.map((item, i) => (
-            <div key={i} className="bg-card rounded-var(--radius) space-y-4 py-12">
+            <div key={i} className=" shadow-sm bg-card rounded-var(--radius) space-y-4 py-12">
               {item.value && (
-                <Typography tag="div" className="text-5xl font-bold">
+                <Typography tag="div" className="text-3xl md:text-5xl font-bold">
                   {item.value}
                 </Typography>
               )}
