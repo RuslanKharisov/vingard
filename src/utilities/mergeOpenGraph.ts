@@ -3,14 +3,15 @@ import { getServerSideURL } from './getURL'
 
 const defaultOpenGraph: Metadata['openGraph'] = {
   type: 'website',
-  description: 'An open-source website built with Payload and Next.js.',
+  description:
+    'Вингард Автоматика — российский интегратор HMI/SCADA и АСУТП. Автоматизируем и цифровизируем промышленные производства, внедряем ПО и оборудование ведущих мировых и отечественных брендов.',
   images: [
     {
       url: `${getServerSideURL()}/website-template-OG.webp`,
     },
   ],
-  siteName: 'Payload Website Template',
-  title: 'Payload Website Template',
+  siteName: '«НПО «Вингард Автоматика»',
+  title: 'Вингард Автоматика — интегратор HMI/SCADA и АСУТП',
 }
 
 export const mergeOpenGraph = (og?: Metadata['openGraph']): Metadata['openGraph'] => {

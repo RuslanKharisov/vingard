@@ -71,6 +71,6 @@ export default async function PortfolioList() {
 
 export function generateMetadata(): Metadata {
   return {
-    title: 'Portfolio',
+    title: '«НПО «Вингард Автоматика». Реализованные проекты АСУТП | HMI/SCADA',
   }
 }

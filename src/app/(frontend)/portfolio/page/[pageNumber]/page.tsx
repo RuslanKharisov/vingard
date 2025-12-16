@@ -79,8 +79,9 @@ export default async function PortfolioList({ params: paramsPromise }: Args) {
   )
 }
 
-export function generateMetadata(): Metadata {
+export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
+  const { pageNumber } = await paramsPromise
   return {
-    title: 'Portfolio',
+    title: `«НПО «Вингард Автоматика». Реализованные проекты АСУТП | HMI/SCADA. Страница ${pageNumber || ''}`,
   }
 }
