@@ -120,7 +120,7 @@ const config = {
               },
               h2: {
                 fontWeight: '600',
-                fontSize: '2.25rem',
+                fontSize: '1.65rem',
               },
             },
           ],
