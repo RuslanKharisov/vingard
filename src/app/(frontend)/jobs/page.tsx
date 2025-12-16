@@ -67,5 +67,5 @@ export default async function JobsPage() {
 }
 
 export function generateMetadata(): Metadata {
-  return { title: 'Вакансии' }
+  return { title: '«НПО «Вингард Автоматика». Вакансии' }
 }

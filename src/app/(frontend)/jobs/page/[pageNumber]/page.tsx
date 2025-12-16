@@ -78,6 +78,7 @@ export default async function JobsPage({ params: paramsPromise }: Args) {
   )
 }
 
-export function generateMetadata(): Metadata {
-  return { title: 'Вакансии' }
+export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
+  const { pageNumber } = await paramsPromise
+  return { title: `«НПО «Вингард Автоматика». Вакансии. Страница ${pageNumber || ''}` }
 }
