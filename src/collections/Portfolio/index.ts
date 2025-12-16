@@ -20,6 +20,7 @@ import { anyone } from '@/access/anyone'
 
 export const Portfolio: CollectionConfig<'portfolio'> = {
   slug: 'portfolio',
+  labels: { singular: 'Проект', plural: 'Проекты' },
   access: {
     create: authenticated,
     delete: authenticated,
@@ -31,6 +32,7 @@ export const Portfolio: CollectionConfig<'portfolio'> = {
     slug: true,
   },
   admin: {
+    group: 'Информация',
     defaultColumns: ['title', 'slug', 'updatedAt'],
     livePreview: {
       url: ({ data, req }) => {

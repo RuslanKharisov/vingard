@@ -28,6 +28,7 @@ import { StaticContentBlock } from '@/blocks/StaticContentBlock/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
+  labels: { singular: 'Веб страница', plural: 'Веб страницы' },
   access: {
     create: authenticated,
     delete: authenticated,
@@ -42,6 +43,7 @@ export const Pages: CollectionConfig<'pages'> = {
     slug: true,
   },
   admin: {
+    group: 'Посты и страницы',
     defaultColumns: ['title', 'slug', 'updatedAt'],
     livePreview: {
       url: ({ data, req }) =>

@@ -15,6 +15,7 @@ export const Icons: CollectionConfig = {
     plural: 'Иконки',
   },
   admin: {
+    group: 'Информация',
     useAsTitle: 'label',
   },
   access: {

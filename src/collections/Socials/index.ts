@@ -4,7 +4,7 @@ import type { CollectionConfig, TextFieldSingleValidation } from 'payload'
 export const Socials: CollectionConfig = {
   slug: 'socials',
   labels: { singular: 'Соцсеть', plural: 'Соцсети' },
-  admin: { useAsTitle: 'name' },
+  admin: { group: 'Информация', useAsTitle: 'name' },
   access: {
     read: () => true,
     create: authenticated,

@@ -23,7 +23,8 @@ import { revalidateJob } from './hooks/revalidateJobs'
 
 export const Jobs: CollectionConfig<'jobs'> = {
   slug: 'jobs',
-  admin: { useAsTitle: 'title' },
+  labels: { singular: 'Вакансия', plural: 'Вакансии' },
+  admin: { group: 'Вакансии', useAsTitle: 'title' },
   access: {
     create: authenticated,
     delete: authenticated,
