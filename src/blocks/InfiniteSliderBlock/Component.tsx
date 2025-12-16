@@ -52,11 +52,11 @@ export const InfiniteSliderBlock: React.FC<Props> = async ({
 
   return (
     <section className="bg-background">
-      <div className="group relative container px-6">
+      <div className="group relative container">
         <div className="flex flex-col items-center md:flex-row overflow-x-hidden">
           {title && (
             <div className="md:max-w-44 md:border-r md:pr-6">
-              <Typography tag="p" className="text-end text-lg">
+              <Typography tag="p" className="hidden md:block text-end text-lg">
                 {title}
               </Typography>
             </div>
