@@ -14,9 +14,11 @@ import {
 } from '@payloadcms/plugin-seo/fields'
 import { Content } from '@/blocks/Content/config'
 import { slugField } from '@/fields/slug'
+import { anyone } from '@/access/anyone'
+
 import { revalidatePortfolio, revalidatePortfolioDelete } from './hooks/revalidatePortfolio'
 import { StaticContentBlock } from '@/blocks/StaticContentBlock/config'
-import { anyone } from '@/access/anyone'
+import { StatsBlock } from '@/blocks/StatsBlock/config'
 
 export const Portfolio: CollectionConfig<'portfolio'> = {
   slug: 'portfolio',
@@ -79,7 +81,7 @@ export const Portfolio: CollectionConfig<'portfolio'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [Content, StaticContentBlock],
+              blocks: [Content, StaticContentBlock, StatsBlock],
               required: true,
               admin: {
                 initCollapsed: true,
