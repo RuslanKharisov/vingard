@@ -96,8 +96,18 @@ export const StaticContentBlock: React.FC<Props> = ({
 const ImageSlot = ({ media, mediaDark }: { media?: any; mediaDark?: any }) => {
   return (
     <div className="bg-linear-to-b aspect-76/59 relative rounded-2xl from-zinc-300 to-transparent p-px dark:from-zinc-700">
-      {mediaDark && <Media resource={mediaDark} imgClassName="hidden rounded-[15px] dark:block" />}
-      <Media resource={media} imgClassName="rounded-[15px] shadow dark:hidden" />
+      {mediaDark && (
+        <Media
+          resource={mediaDark}
+          imgClassName="hidden rounded-[15px] dark:block"
+          pictureClassName="flex justify-end"
+        />
+      )}
+      <Media
+        resource={media}
+        imgClassName="rounded-[15px] shadow dark:hidden"
+        pictureClassName="flex justify-end"
+      />
     </div>
   )
 }
