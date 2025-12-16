@@ -4,6 +4,7 @@ import type { GlobalConfig } from 'payload'
 
 export const Contacts: GlobalConfig = {
   slug: 'contacts',
+  label: { singular: 'Контакная информация' },
   access: {
     read: anyone,
     update: authenticated,

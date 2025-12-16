@@ -3,10 +3,11 @@ import type { CollectionConfig } from 'payload'
 export const Clients: CollectionConfig = {
   slug: 'clients',
   labels: {
-    singular: 'Client',
-    plural: 'Clients',
+    singular: 'Заказчик',
+    plural: 'Заказчики',
   },
   admin: {
+    group: 'Информация',
     useAsTitle: 'name',
   },
   fields: [
