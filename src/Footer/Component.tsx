@@ -76,7 +76,7 @@ export async function Footer() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             {/* ToDo: реализовать рендер ссылок на соцсети из коллекции Socials */}
-            <span className="text-sm text-muted-foreground">Соцсети скоро</span>
+            <span className="text-sm text-muted-foreground">Соцсети скоро!</span>
           </div>
         </div>
       </div>
