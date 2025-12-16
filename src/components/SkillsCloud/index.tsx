@@ -24,7 +24,7 @@ export function SkillsCloud({ skills }: SkillsCloudProps) {
     <div className="flex flex-wrap gap-2">
       {populatedSkills.map((item) => (
         <div
-          className="relative flex items-center justify-center rounded-lg  shadow-lg shadow-muted-foreground/10 bg-background p-3 w-[200px]"
+          className="relative flex items-center justify-center rounded-lg  shadow-lg shadow-muted-foreground/10 bg-background p-3 w-[48%] md:w-[200px]"
           key={item.skill.id}
         >
           <div className="-mt-2 -ml-20 pointer-events-none absolute top-0 left-1/2 size-full mask-[radial-gradient(farthest-side_at_top,white,transparent)]">
