@@ -15,7 +15,7 @@ export async function Footer() {
   const navItems = footerData?.navItems || []
 
   return (
-    <footer className="border-t bg-black dark:bg-card text-white">
+    <footer className="mt-auto border-t bg-black dark:bg-card text-white">
       <div className="container px-6 py-12">
         {/* Основная сетка: логотип слева, навигация и контакты справа */}
         <div className="grid gap-12 md:grid-cols-12">
