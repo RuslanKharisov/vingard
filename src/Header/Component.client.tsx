@@ -7,7 +7,6 @@ import type { Header } from '@/payload-types'
 
 import { Logo } from '@/components/Logo/Logo'
 import { HeaderNav } from './Nav'
-import { SearchIcon } from 'lucide-react'
 import { ThemeSelector } from '@/providers/Theme/ThemeSelector'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/utilities/ui'
